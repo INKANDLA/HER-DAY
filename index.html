@@ -1,0 +1,156 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>SOS</title>
+    <style>
+        body {
+            background-image: url('76sw.gif');
+            background-size: cover;
+            background-position: center;
+            background-repeat: no-repeat;
+            height: 150vh;
+            margin: 0;
+            padding: 0;
+        }
+
+        header {
+            height: 450px;
+            display: flex;
+            align-items: left;
+            justify-content: Center;
+            flex-direction: column;
+            text-align: Center;
+            color: orange;
+            font-size: 7rem;
+            text-shadow: 3px 1px 3px purple;
+        }
+
+        h1 {
+            font-size: 5rem;
+            margin: 0;
+            color: orange;
+            text-shadow: 3px 1px 3px purple;
+        }
+
+        h2 {
+            font-size: 3rem;
+            font-style: italic;
+            font-family: 'Star Jedi', sans-serif;
+            margin: 20px 0;
+            color: white;
+            text-shadow: 6px 6px 4px red;
+        }
+
+        h3 {
+            font-size: 2rem;
+            font-style: italic;
+            margin: 20px 0;
+            color: white;
+            text-shadow: 2px 4px 4px red;
+        }
+
+        h4 {
+            font-size: 2rem;
+            font-style: italic;
+            margin: 20px 0;
+            color: black;
+            text-shadow: 12px 12px 14px gold;
+        }
+
+        a {
+            color: white;
+        }
+
+        a:hover {
+            color: cyan;
+        }
+
+        #image-container {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-top: 20px;
+        }
+
+        #image-container img {
+            max-width:50%;
+            height: 120;
+        }
+
+        #description {
+            max-width: 85%;
+            text-align: center;
+            color: white;
+            font-size: 2rem;
+        }
+    </style>
+</head>
+<body>
+<header>
+
+    <div id="message"></div>
+</header>
+
+<div id="image-container">
+   <img src="star.gif" alt="Image Description" height="700">
+    <div id="description"></div>
+</div>
+
+<h1>
+<script>
+    const messages = [
+        "Enjoy _your_ DAY",
+      
+    ];
+
+    
+
+    const messageElement = document.getElementById('message');
+    const descriptionElement = document.getElementById('description');
+	const AudioElement = document.getElementById('Audio');
+    let messageIndex = 0;
+    let charIndex = 0;
+    let letterTimeout;
+
+    function typeMessage() {
+        if (messageIndex < messages.length) {
+            const message = messages[messageIndex];
+            if (charIndex < message.length) {
+                messageElement.innerHTML += message.charAt(charIndex);
+                charIndex++;
+                letterTimeout = setTimeout(typeMessage, 100); // Adjust typing speed (milliseconds)
+            } else {
+                charIndex = 0;
+                messageIndex++;
+                messageElement.innerHTML += '<br>'; // Add a new line after each message
+                letterTimeout = setTimeout(typeMessage, 500); // Pause before typing the next message
+            }
+        } else if (messageIndex - messages.length < lastMessages.length) {
+            const lastMessage = lastMessages[messageIndex - messages.length];
+            if (charIndex < lastMessage.length) {
+                descriptionElement.innerHTML += lastMessage.charAt(charIndex);
+                charIndex++;
+                letterTimeout = setTimeout(typeMessage, 100); // Adjust typing speed (milliseconds)
+            } else {
+                charIndex = 0;
+                messageIndex++;
+                descriptionElement.innerHTML += '<br>'; // Add a new line after each message
+                letterTimeout = setTimeout(typeMessage, 500); // Pause before typing the next message
+            }
+        } else {
+            clearTimeout(letterTimeout);
+        }
+    }
+
+    // Start typing when the page loads
+    document.addEventListener('DOMContentLoaded', typeMessage);
+</script>
+
+<footer>
+    <!-- Your footer content -->
+</footer>
+
+</body>
+</html>
